@@ -7,7 +7,7 @@ import (
 
   "github.com/jinzhu/gorm"
   _ "github.com/jinzhu/gorm/dialects/postgres"
-	"github.com/gorilla/mux"
+  "github.com/gorilla/mux"
   "github.com/atmavichara/apicurious_go/models"
   "github.com/atmavichara/apicurious_go/handler"
   "github.com/atmavichara/apicurious_go/config"
