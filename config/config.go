@@ -6,6 +6,7 @@ type DBConfig struct {
   User string
   DBName string
   Password string
+  SSLMode string
 }
 
 type Config struct {
@@ -16,10 +17,11 @@ func GetConfig() *Config {
   return &Config {
     DB: &DBConfig {
       Host: "localhost",
-      Port: "5342",
+      Port: "5432",
       User: "go_user",
       DBName: "quantified_self_go",
       Password: "pass",
-    }
+      SSLMode: "disable",
+    },
   }
 }
