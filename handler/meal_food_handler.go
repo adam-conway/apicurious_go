@@ -1,3 +1,21 @@
+package handler
+
+import (
+  "net/http"
+  "strconv"
+  "fmt"
+
+  "github.com/gorilla/mux"
+  "github.com/jinzhu/gorm"
+  _ "github.com/jinzhu/gorm/dialects/postgres"
+  "github.com/atmavichara/apicurious_go/models"
+)
+
+func GetAllMealFoods(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
+  mealFoods := []models.MealFood{}
+  db.Set("gorm:auto_preload", true).Find(&mealFoods)
+  RespondJSON(w, http.StatusOK, mealFoods)
+}
 
 func CreateMealFood(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
   params := mux.Vars(r)
@@ -60,3 +78,4 @@ func DeleteMealFood(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 
     message := map[string]string{"message": "Successfully removed " + food.Name + " from " + meal.Name}
     RespondJSON(w, http.StatusOK, message)
+}
