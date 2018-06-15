@@ -31,6 +31,8 @@ func main() {
   sub.HandleFunc("/foods/{id}", a.GetFood).Methods("GET")
   sub.HandleFunc("/foods", a.CreateFood).Methods("POST")
   sub.HandleFunc("/meal-foods", a.GetAllMealFoods).Methods("GET")
+  sub.HandleFunc("/meals/{meal_id}/foods/{id}", a.CreateMealFood).Methods("POST")
+  sub.HandleFunc("/meals/{meal_id}/foods/{id}", a.DeleteMealFood).Methods("DELETE")
   log.Fatal(http.ListenAndServe(":3000", sub))
 }
 
@@ -77,6 +79,14 @@ func (a *App) CreateFood(w http.ResponseWriter, r *http.Request) {
 
 func (a *App) GetAllMealFoods(w http.ResponseWriter, r *http.Request) {
   handler.GetAllMealFoods(a.DB, w, r)
+}
+
+func (a *App) CreateMealFood(w http.ResponseWriter, r *http.Request) {
+  handler.CreateMealFood(a.DB, w, r)
+}
+
+func (a *App) DeleteMealFood(w http.ResponseWriter, r *http.Request) {
+  handler.DeleteMealFood(a.DB, w, r)
 }
 
 func (a *App) Migrate() {
