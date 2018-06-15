@@ -8,6 +8,7 @@ import (
   "github.com/jinzhu/gorm"
   _ "github.com/jinzhu/gorm/dialects/postgres"
   "github.com/gorilla/mux"
+	"github.com/gorilla/mux"
   "github.com/atmavichara/apicurious_go/models"
   "github.com/atmavichara/apicurious_go/handler"
   "github.com/atmavichara/apicurious_go/config"
@@ -29,6 +30,7 @@ func main() {
   sub.HandleFunc("/meals", a.GetAllMeals).Methods("GET")
   sub.HandleFunc("/meals/{id}/foods", a.GetMeal).Methods("GET")
   sub.HandleFunc("/foods/{id}", a.GetFood).Methods("GET")
+  sub.HandleFunc("/foods", a.CreateFood).Methods("POST")
   log.Fatal(http.ListenAndServe(":3000", sub))
 }
 
@@ -52,6 +54,7 @@ func (a *App) Init(config *config.Config) {
 
   a.DB.AutoMigrate(&models.Food{})
   a.DB.AutoMigrate(&models.Meal{})
+  a.Migrate()
 }
 
 func (a *App) GetAllFoods(w http.ResponseWriter, r *http.Request) {
@@ -68,4 +71,13 @@ func (a *App) GetMeal(w http.ResponseWriter, r *http.Request) {
 
 func (a *App) GetFood(w http.ResponseWriter, r *http.Request) {
   handler.GetFood(a.DB, w, r)
+}
+
+func (a *App) CreateFood(w http.ResponseWriter, r *http.Request) {
+  handler.CreateFood(a.DB, w, r)
+}
+func (a *App) Migrate() {
+  a.DB.AutoMigrate(&models.Food{})
+  a.DB.AutoMigrate(&models.Meal{})
+  a.DB.AutoMigrate(&models.MealFood{})
 }
