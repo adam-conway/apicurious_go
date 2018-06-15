@@ -11,7 +11,7 @@ import (
 
 func GetAllMeals(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
   meals := []models.Meal{}
-  db.Find(&meals)
+  db.Preload("Foods").Find(&meals)
   RespondJSON(w, http.StatusOK, meals)
 }
 
