@@ -10,4 +10,5 @@ type Food struct {
 
   Name string `gorm: "type:varchar(100)" json: "name"`
   Calories uint `json: "calories"`
+  Meals []Meal `gorm: "many2many:meal_foods"`
 }
