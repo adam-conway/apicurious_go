@@ -8,9 +8,9 @@ import (
   "github.com/jinzhu/gorm"
   _ "github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/gorilla/mux"
-  "github.com/atmavichara/apicurious_go/models"
-  "github.com/atmavichara/apicurious_go/handler"
-  "github.com/atmavichara/apicurious_go/config"
+  "github.com/adam-conway/apicurious_go/models"
+  "github.com/adam-conway/apicurious_go/handler"
+  "github.com/adam-conway/apicurious_go/config"
 )
 
 type App struct {
@@ -37,12 +37,11 @@ func main() {
 }
 
 func (a *App) Init(config *config.Config) {
-  dbParams := fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s sslmode=%s",
+  dbParams := fmt.Sprintf("host=%s port=%s user=%s dbname=%s sslmode=%s",
     config.DB.Host,
     config.DB.Port,
     config.DB.User,
     config.DB.DBName,
-    config.DB.Password,
     config.DB.SSLMode)
 
   var err error

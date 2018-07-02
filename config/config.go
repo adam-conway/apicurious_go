@@ -18,9 +18,8 @@ func GetConfig() *Config {
     DB: &DBConfig {
       Host: "localhost",
       Port: "5432",
-      User: "go_user",
-      DBName: "quantified_self_go",
-      Password: "pass",
+      User: "adamconway",
+      DBName: "adamconway",
       SSLMode: "disable",
     },
   }

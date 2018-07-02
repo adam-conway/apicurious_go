@@ -8,7 +8,7 @@ import (
   "github.com/gorilla/mux"
   "github.com/jinzhu/gorm"
   _ "github.com/jinzhu/gorm/dialects/postgres"
-  "github.com/atmavichara/apicurious_go/models"
+  "github.com/adam-conway/apicurious_go/models"
 )
 
 func GetAllMealFoods(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
